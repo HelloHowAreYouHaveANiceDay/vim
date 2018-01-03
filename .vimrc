@@ -43,6 +43,7 @@
 :let maplocalleader = " "
 :nnoremap <localleader>ev :vsplit $dropbox/vim/.vimrc<cr>
 :nnoremap <localleader>sv :source $dropbox/vim/.vimrc<cr>
+:set nocompatible
 "}}}
 
 "editor format settings ----- {{{
@@ -85,6 +86,16 @@
 "cil( = change in last parens
 :onoremap il( :<c-u>normal! F)vi(<cr>
 
-:augroup hellohowareyouhaveaniceday
+" color formatting ----- {{{
+:set cursorline
+:highlight cursorline ctermbg=lightyellow ctermfg=black
+:highlight Normal ctermbg=0 ctermfg=white
+:highlight Comment ctermfg=darkgrey
+:highlight Constant ctermfg=lightcyan
+:highlight Label ctermfg=lightgreen
+:highlight Identifier ctermfg=red
+:highlight Statement ctermfg=lightmagenta
+:highlight special ctermfg=lightgrey
+:highlight Function ctermfg=lightgreen
+" }}}
 
-:augroup END
