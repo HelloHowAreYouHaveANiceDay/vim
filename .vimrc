@@ -1,3 +1,17 @@
+set nocompatible
+filetype off
+
+set rtp+=$dropbox/vim/bundle/Vundle.vim/
+
+call vundle#begin()
+let g:vundle#bundle_dir='$dropbox/vim/bundle/'
+
+Plugin 'VundleVim/Vundle.vim'
+" call vundle#configure#require(g:bundles)
+
+call vundle#end()
+filetype plugin indent on
+
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
@@ -85,6 +99,16 @@
 "cil( = change in last parens
 :onoremap il( :<c-u>normal! F)vi(<cr>
 
-:augroup hellohowareyouhaveaniceday
+" color formatting ----- {{{
+:set cursorline
+:highlight cursorline ctermbg=lightyellow ctermfg=black
+:highlight Normal ctermbg=0 ctermfg=white
+:highlight Comment ctermfg=darkgrey
+:highlight Constant ctermfg=lightcyan
+:highlight Label ctermfg=lightgreen
+:highlight Identifier ctermfg=red
+:highlight Statement ctermfg=lightmagenta
+:highlight special ctermfg=lightgrey
+:highlight Function ctermfg=lightgreen
+" }}}
 
-:augroup END
