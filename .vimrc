@@ -1,3 +1,17 @@
+set nocompatible
+filetype off
+
+set rtp+=$dropbox/vim/bundle/Vundle.vim/
+
+call vundle#begin()
+let g:vundle#bundle_dir='$dropbox/vim/bundle/'
+
+Plugin 'VundleVim/Vundle.vim'
+" call vundle#configure#require(g:bundles)
+
+call vundle#end()
+filetype plugin indent on
+
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
@@ -43,7 +57,6 @@
 :let maplocalleader = " "
 :nnoremap <localleader>ev :vsplit $dropbox/vim/.vimrc<cr>
 :nnoremap <localleader>sv :source $dropbox/vim/.vimrc<cr>
-:set nocompatible
 "}}}
 
 "editor format settings ----- {{{
