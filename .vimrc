@@ -32,10 +32,59 @@
 "  endif
 "endfunction
 
+"vimscript filesettings ----- {{{
+:augroup filetypevim
+:autocmd!
+:autocmd FileType vim setlocal foldmethod=marker
+:augroup END
+" }}}
 
+"local leader and dropbox vimrc ----- {{{
+:let maplocalleader = " "
+:nnoremap <localleader>ev :vsplit $dropbox/vim/.vimrc<cr>
+:nnoremap <localleader>sv :source $dropbox/vim/.vimrc<cr>
+"}}}
+
+"editor format settings ----- {{{
 :set number
-:let mapleader = " "
-:nnoremap <leader>ev :vsplit $dropbox/vim/.vimrc<cr>
-:nnoremap <leader>sv :source $dropbox/vim/.vimrc<cr>
+:set tabstop=4
+:set softtabstop=4
+:set expandtab
+:set showcmd
+"}}}
+
 :inoremap jk <esc>
 :inoremap <esc> <nop>
+
+:nnoremap <localleader>" viw<esc>a"<esc>bi"<esc>lel
+:nnoremap <localleader>' viw<esc>a'<esc>bi'<esc>lel
+:nnoremap <localleader>[ viw<esc>a]<esc>bi[<esc>lel
+:nnoremap <localleader>( viw<esc>a)<esc>bi(<esc>lel
+:nnoremap <localleader>{ viw<esc>a}<esc>bi{<esc>lel
+
+:nnoremap <localleader>rs viw<esc>lxbhxlel
+
+:nnoremap <localleader>h <c-w>h
+:nnoremap <localleader>j <c-w>j
+:nnoremap <localleader>k <c-w>k
+:nnoremap <localleader>l <c-w>l
+
+:nnoremap H 0
+:nnoremap L $
+
+" javascript settings ----- {{{
+:autocmd filetype javascript nnoremap <buffer> <localleader>c I//<esc>
+" }}}
+"
+" python settings ----- {{{
+:autocmd filetype python nnoremap <buffer> <localleader>c I#<esc>
+" }}}
+
+"cin( = change in parens
+:onoremap in( :<c-u>normal! f(vi(<cr>
+"cil( = change in last parens
+:onoremap il( :<c-u>normal! F)vi(<cr>
+
+:augroup hellohowareyouhaveaniceday
+
+:augroup END
