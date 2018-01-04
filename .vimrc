@@ -1,4 +1,4 @@
-"came with vim ----- {{
+" came with vim ----- {{{
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -40,18 +40,20 @@ filetype off
 
 set rtp+=$dropbox/vim/bundle/Vundle.vim/
 
-call vundle#begin()
+call vundle#begin('$dropbox/vim/plugins/')
 let g:vundle#bundle_dir='$dropbox/vim/bundle/'
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'dracula/vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'morhetz/gruvbox'
 " call vundle#configure#require(g:bundles)
 
 call vundle#end()
 filetype plugin indent on
-"j}}}
+"}}}
 
 "vimscript filesettings ----- {{{
 :augroup filetypevim
@@ -74,8 +76,13 @@ filetype plugin indent on
 :set showcmd
 "}}}
 
+" key remaps ----- {{{
 :inoremap jk <esc>
 :inoremap <esc> <nop>
+:noremap <up> <nop>
+:noremap <down> <nop>
+:noremap <left> <nop>
+:noremap <right> <nop>
 
 :nnoremap <localleader>" viw<esc>a"<esc>bi"<esc>lel
 :nnoremap <localleader>' viw<esc>a'<esc>bi'<esc>lel
@@ -92,6 +99,7 @@ filetype plugin indent on
 
 :nnoremap H 0
 :nnoremap L $
+" }}}
 
 " javascript settings ----- {{{
 :autocmd filetype javascript nnoremap <buffer> <localleader>c I//<esc>
@@ -106,9 +114,26 @@ filetype plugin indent on
 "cil( = change in last parens
 :onoremap il( :<c-u>normal! F)vi(<cr>
 
+map <C-n> :NERDTreeToggle<CR>
+
 " color formatting ----- {{{
-set t_Co=256
-let g:airline_theme='wombat'
-colorscheme dracula
+if !has("gui_running")
+    set term=pcansi
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    set bs=indent,eol,start
+    let g:airline_theme='wombat'
+    colorscheme gruvbox
+endif
 " }}}
 
+
+set statusline+=%#warningmsg# 
+set statusline+=%{SyntasticStatuslineFlag()} 
+set statusline+=%*  
+let g:syntastic_always_populate_loc_list = 1 
+let g:syntastic_auto_loc_list = 1 
+let g:syntastic_check_on_open = 1 
+let g:syntastic_check_on_wq = 0
+noh
