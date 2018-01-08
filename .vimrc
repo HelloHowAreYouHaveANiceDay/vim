@@ -49,6 +49,10 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'morhetz/gruvbox'
+Plugin 'tpope/vim-fugitive'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'posva/vim-vue'
 " call vundle#configure#require(g:bundles)
 
 call vundle#end()
@@ -70,8 +74,9 @@ filetype plugin indent on
 
 "editor format settings ----- {{{
 :set number
-:set tabstop=4
-:set softtabstop=4
+:set tabstop=2
+:set softtabstop=2
+:set shiftwidth=2
 :set expandtab
 :set showcmd
 "}}}
@@ -89,22 +94,24 @@ filetype plugin indent on
 :nnoremap <localleader>[ viw<esc>a]<esc>bi[<esc>lel
 :nnoremap <localleader>( viw<esc>a)<esc>bi(<esc>lel
 :nnoremap <localleader>{ viw<esc>a}<esc>bi{<esc>lel
+:nnoremap <localleader>< viw<esc>a><esc>bi<<esc>lel
 
 :nnoremap <localleader>rs viw<esc>lxbhxlel
+
+:nnoremap <localleader>/ :noh<cr>
 
 :nnoremap <localleader>h <c-w>h
 :nnoremap <localleader>j <c-w>j
 :nnoremap <localleader>k <c-w>k
 :nnoremap <localleader>l <c-w>l
 
+:nnoremap <localleader>sf 0f{a<cr><esc>O
+
 :nnoremap H 0
 :nnoremap L $
 " }}}
 
-" javascript settings ----- {{{
-:autocmd filetype javascript nnoremap <buffer> <localleader>c I//<esc>
-" }}}
-"
+
 " python settings ----- {{{
 :autocmd filetype python nnoremap <buffer> <localleader>c I#<esc>
 " }}}
@@ -115,6 +122,7 @@ filetype plugin indent on
 :onoremap il( :<c-u>normal! F)vi(<cr>
 
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
 " color formatting ----- {{{
 if !has("gui_running")
@@ -123,12 +131,12 @@ if !has("gui_running")
     let &t_AB="\e[48;5;%dm"
     let &t_AF="\e[38;5;%dm"
     set bs=indent,eol,start
-    let g:airline_theme='wombat'
+    let g:airline_theme='base16'
     colorscheme gruvbox
 endif
 " }}}
 
-
+" StatusLine Settings ----- {{{
 set statusline+=%#warningmsg# 
 set statusline+=%{SyntasticStatuslineFlag()} 
 set statusline+=%*  
@@ -136,4 +144,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1 
 let g:syntastic_check_on_open = 1 
 let g:syntastic_check_on_wq = 0
-noh
+let g:syntastic_javascript_checkers = ['eslint']
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+:nmap <localleader><localleader> <Plug>(easymotion-overwin-f)
+" }}}
